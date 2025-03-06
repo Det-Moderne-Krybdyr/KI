@@ -1,0 +1,6 @@
+n=16, hashset,iterations=1,000,000 : time: 5.2798614501953125
+n=32, hashset,iterations=1,000,000 : time: 9.569284915924072
+n=64, hashset,iterations=1,000,000 : time: 18.07875156402588
+n=128, hashset,iterations=1,000,000 : time: 35.14962959289551
+n=16, list, iterations=1,000,000 : time: 5.552053213119507
+time: 11.335903406143188
