@@ -185,52 +185,6 @@ class Variable(object):
                         prod = prod * node_obj.probability_table[node_obj_parents_vals][vals[c[node]]]
                 sum = sum + prod
 
-        """product1 = 1
-        product1 = product1 * parent_tree[2].probability_table[()][1]
-        product1 = product1 * parent_tree[1].probability_table[('true',)][1]
-        product1 = product1 * parent_tree[0].probability_table[('true',)][1]
-        product1 = product1 * root.probability_table[('true','true')][1]
-        product2 = 1
-        product2 = product2 * parent_tree[2].probability_table[()][0]
-        product2 = product2 * parent_tree[1].probability_table[('false',)][1]
-        product2 = product2 * parent_tree[0].probability_table[('false',)][1]
-        product2 = product2 * root.probability_table[('true','true')][1]
-        product3 = 1
-        product3 = product3 * parent_tree[2].probability_table[()][0]
-        product3 = product3 * parent_tree[1].probability_table[('false',)][0]
-        product3 = product3 * parent_tree[0].probability_table[('false',)][1]
-        product3 = product3 * root.probability_table[('true','false')][1]
-        product4 = 1
-        product4 = product4 * parent_tree[2].probability_table[()][0]
-        product4 = product4 * parent_tree[1].probability_table[('false',)][0]
-        product4 = product4 * parent_tree[0].probability_table[('false',)][0]
-        product4 = product4 * root.probability_table[('false','false')][1]
-        product5 = 1
-        product5 = product5 * parent_tree[2].probability_table[()][0]
-        product5 = product5 * parent_tree[1].probability_table[('false',)][1]
-        product5 = product5 * parent_tree[0].probability_table[('false',)][0]
-        product5 = product5 * root.probability_table[('false','true')][1]
-        product6 = 1
-        product6 = product6 * parent_tree[2].probability_table[()][1]
-        product6 = product6 * parent_tree[1].probability_table[('true',)][0]
-        product6 = product6 * parent_tree[0].probability_table[('true',)][0]
-        product6 = product6 * root.probability_table[('false','false')][1]
-        product7 = 1
-        product7 = product7 * parent_tree[2].probability_table[()][1]
-        product7 = product7 * parent_tree[1].probability_table[('true',)][1]
-        product7 = product7 * parent_tree[0].probability_table[('true',)][0]
-        product7 = product7 * root.probability_table[('true','false')][1]
-        product8 = 1
-        product8 = product8 * parent_tree[2].probability_table[()][1]
-        product8 = product8 * parent_tree[1].probability_table[('true',)][0]
-        product8 = product8 * parent_tree[0].probability_table[('true',)][1]
-        product8 = product8 * root.probability_table[('false','true')][1]
-
-        sum = product1 + product2 + product3 + product4 + product5 + product6 + product7 + product8
-            
-        #for combination in product(*(var.probability_table.values() for var in parent_tree)):
-        #    print(combination)"""
-
         print("sum: " + str(sum))
         
         self.marginal_probabilities = {
@@ -238,37 +192,6 @@ class Variable(object):
                 0 : 1-sum
             }
         
-
-
-        """wet_grass = self.probability_table  
-        sprinkler_cpt = self.get_parents()[0].probability_table  
-        rain_cpt = self.get_parents()[1].probability_table      
-        cloudy_cpt = rain_cpt.get_parents()[0].probability_table  
-
-        assignments = ['false', 'true']
-        total = 0
-
-        for c in assignments:  
-            for s in assignments:  
-                for r in assignments:  
-                    # P(Cloudy)
-                    P_C = cloudy_cpt[()][assignments.index(c)]
-
-                    # P(Sprinkler | Cloudy)
-                    P_S_given_C = sprinkler_cpt[(c,)][assignments.index(s)]
-
-                    # P(Rain | Cloudy)
-                    P_R_given_C = rain_cpt[(c,)][assignments.index(r)]
-
-                    # P(WetGrass = true | S, R)
-                    P_W_given_SR = wet_grass[(s, r)][assignments.index('true')]
-
-                    total += P_C * P_S_given_C * P_R_given_C * P_W_given_SR
-
-        print("P(WetGrass = true):", total)
-        # COMPLETE THIS FUNCTION
-        # Set self.marginal_probabilities
-        self.marginal_probabilities = total"""
         # set this Node`s state to ready
         self.ready = True
 
