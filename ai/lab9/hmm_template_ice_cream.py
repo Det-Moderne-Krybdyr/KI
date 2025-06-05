@@ -16,21 +16,16 @@ def main():
     states = np.array(["initial", "hot", "cold", "final"])
 
     # To simulate starting from index 1, we add a dummy value at index 0
-    observationss = [
-        [None, 3, 1, 3],
-        [None, 3, 3, 1, 1, 2, 2, 3, 1, 3],
-        [None, 3, 3, 1, 1, 2, 3, 3, 1, 2],
-        [None, 2, 1, 3, 1],
-    ]
+    observationss = [[None, 2, 1, 3, 1]]
 
     # Markov transition matrix
-    # transitions[start, end] I   H   C   F      FRA STATES I SIDEN TIL BOGSTAVER I TOPPEN OVENFOR MATRICENN
+    # transitions[start, end] I   H   C   F
     transitions = np.array(
         [
-            [0.0, 0.6, 0.4, 0.0],  # Initial state
-            [0.0, 0.3, 0.5, 0.2],  # Hot state
-            [0.0, 0.2, 0.6, 0.2],  # Cold state
-            [0.0, 0.0, 0.0, 0.0],  # Final state
+            [0.0, 0.6, 0.4, 0.0],  # Start → HOT, COLD
+            [0.0, 0.3, 0.6, 0.1],  # HOT → HOT, COLD, End
+            [0.0, 0.2, 0.6, 0.2],  # COLD → HOT, COLD, End
+            [0.0, 0.0, 0.0, 0.0],  # End
         ]
     )
 
@@ -39,10 +34,10 @@ def main():
     #                       0   1   2   3   ice creams
     emissions = np.array(
         [
-            [0.0, 0.0, 0.0, 0.0],  # Initial state
-            [0.0, 0.2, 0.5, 0.3],  # Hot state
-            [0.0, 0.4, 0.3, 0.3],  # Cold state
-            [0.0, 0.0, 0.0, 0.0],  # Final state
+            [0.0, 0.0, 0.0, 0.0],
+            [0.0, 0.2, 0.5, 0.3],
+            [0.0, 0.4, 0.3, 0.3],
+            [0.0, 0.0, 0.0, 0.0],
         ]
     )
 

@@ -6,6 +6,7 @@ from itertools import product
 def multiply_vector_elements(vector):
     def mult(x, y):
         return x * y
+
     return functools.reduce(mult, vector, 1)
 
 
@@ -64,7 +65,9 @@ class Variable:
                 for p in self.parents:
                     p.calculate_marginal_probability()
                     p_joint *= p.get_marginal_probability(parent_vals[p.name])
-                probs = self.probability_table[tuple(parent_vals[p.name] for p in self.parents)]
+                probs = self.probability_table[
+                    tuple(parent_vals[p.name] for p in self.parents)
+                ]
                 for i in range(len(probs)):
                     total[i] += probs[i] * p_joint
             self.marginal_probabilities = total
