@@ -12,17 +12,18 @@ class CSP:
         return self.recursive_backtracking({})
 
     def recursive_backtracking(self, assignment):
-        if(self.is_complete(assignment)):
+        if self.is_complete(assignment):
             return assignment
         un_assigned_var = self.select_unassigned_variable(assignment)
-        for v in self.order_domain_values(un_assigned_var,assignment):
-            if(self.is_consistent(un_assigned_var,v,assignment)):
+        for v in self.order_domain_values(un_assigned_var, assignment):
+            if self.is_consistent(un_assigned_var, v, assignment):
                 assignment[un_assigned_var] = v
                 result = self.recursive_backtracking(assignment)
                 if result:
                     return result
                 assignment.pop(un_assigned_var)
         return False
+
     def select_unassigned_variable(self, assignment):
         for variable in self.variables:
             if variable not in assignment:
@@ -55,8 +56,8 @@ class CSP:
 
 
 def create_australia_csp():
-    wa, q, t, v, sa, nt, nsw = 'WA', 'Q', 'T', 'V', 'SA', 'NT', 'NSW'
-    values = ['Red', 'Green', 'Blue']
+    wa, q, t, v, sa, nt, nsw = "WA", "Q", "T", "V", "SA", "NT", "NSW"
+    values = ["Red", "Green", "Blue"]
     variables = [wa, q, t, v, sa, nt, nsw]
     domains = {
         wa: values[:],
@@ -92,12 +93,61 @@ def create_australia_csp():
 
     return CSP(variables, domains, neighbours, constraints)
 
+
 def create_south_america_csp():
-    ven, col, ecu, peru, bol, chile, arg, para, uru,braz,guy_fr, suri, guy,pan,cost = "VEN", "COL", "ECU", "PERU", "BOL", "CHILE", "ARG", "PARA", "URU", "BRAZ", "GUY_FR", "SURI", "GUY", "PAN", "COST"
+    (
+        ven,
+        col,
+        ecu,
+        peru,
+        bol,
+        chile,
+        arg,
+        para,
+        uru,
+        braz,
+        guy_fr,
+        suri,
+        guy,
+        pan,
+        cost,
+    ) = (
+        "VEN",
+        "COL",
+        "ECU",
+        "PERU",
+        "BOL",
+        "CHILE",
+        "ARG",
+        "PARA",
+        "URU",
+        "BRAZ",
+        "GUY_FR",
+        "SURI",
+        "GUY",
+        "PAN",
+        "COST",
+    )
 
-    values = ["Yellow","Green","Blue","Purple"]
+    values = ["Yellow", "Green", "Blue", "Purple"]
 
-    variables = ven, col, ecu, peru, bol, chile, arg, para, uru,braz,guy_fr, suri, guy,pan,cost 
+    variables = (
+        ven,
+        col,
+        ecu,
+        peru,
+        bol,
+        chile,
+        arg,
+        para,
+        uru,
+        braz,
+        guy_fr,
+        suri,
+        guy,
+        pan,
+        cost,
+    )
 
     domains = {
         ven: values[:],
@@ -106,38 +156,38 @@ def create_south_america_csp():
         peru: values[:],
         bol: values[:],
         chile: values[:],
-        arg :values[:],
-        para : values[:],
-        uru :values[:],
-        braz : values [:],
-        guy_fr : values [:],
-        suri : values [:],
-        guy : values[:],
-        pan : values[:],
-        cost : values[:]
+        arg: values[:],
+        para: values[:],
+        uru: values[:],
+        braz: values[:],
+        guy_fr: values[:],
+        suri: values[:],
+        guy: values[:],
+        pan: values[:],
+        cost: values[:],
     }
 
     neighbours = {
-        ven : [col,guy,braz],
-        col: [ecu,peru,braz,ven],
-        ecu: [peru,col],
-        peru: [ecu,col,braz,bol,chile],
-        bol: [braz,peru,chile,arg,para],
-        chile: [arg,bol,peru],
-        arg: [chile,bol,para,uru,braz],
-        para: [bol,arg,braz],
-        uru: [arg,braz],
-        braz: [uru,arg,para,bol,peru,col,ven,guy,suri,guy_fr],
-        guy_fr: [suri,braz],
-        suri: [guy,guy_fr,braz],
-        guy: [ven,suri,braz],
-        pan: [cost,col],
-        cost: [pan]
+        ven: [col, guy, braz],
+        col: [ecu, peru, braz, ven],
+        ecu: [peru, col],
+        peru: [ecu, col, braz, bol, chile],
+        bol: [braz, peru, chile, arg, para],
+        chile: [arg, bol, peru],
+        arg: [chile, bol, para, uru, braz],
+        para: [bol, arg, braz],
+        uru: [arg, braz],
+        braz: [uru, arg, para, bol, peru, col, ven, guy, suri, guy_fr],
+        guy_fr: [suri, braz],
+        suri: [guy, guy_fr, braz],
+        guy: [ven, suri, braz],
+        pan: [cost, col],
+        cost: [pan],
     }
 
     def constraint_function(first_variable, first_value, second_variable, second_value):
         return first_value != second_value
-    
+
     constraints = {
         ven: constraint_function,
         col: constraint_function,
@@ -153,14 +203,15 @@ def create_south_america_csp():
         suri: constraint_function,
         guy: constraint_function,
         pan: constraint_function,
-        cost: constraint_function
+        cost: constraint_function,
     }
 
-    return CSP(variables,domains,neighbours,constraints)
+    return CSP(variables, domains, neighbours, constraints)
 
-if __name__ == '__main__':
-    #australia = create_australia_csp()
-    #result = australia.backtracking_search()
+
+if __name__ == "__main__":
+    # australia = create_australia_csp()
+    # result = australia.backtracking_search()
     america = create_south_america_csp()
     result = america.backtracking_search()
     print(result)

@@ -67,8 +67,7 @@ print(f"Accuracy: {accuracy}")
 # Visualize the decision tree  
 plt.figure(figsize=(25,20))
 tree.plot_tree(classifier, class_names=['no', 'yes'],  filled=True, rounded=True)
-plt.show()
-
+plt.savefig('tree_visualization.png')
 
 # Predicting a new result
 #new_data=[[30,87000]]

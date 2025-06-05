@@ -1,17 +1,17 @@
-A = 'A'
-B = 'B'
+A = "A"
+B = "B"
 percepts = []
 table = {
-    ((A, 'Clean'),): 'Right',
-    ((A, 'Dirty'),): 'Suck',
-    ((B, 'Clean'),): 'Left',
-    ((B, 'Dirty'),): 'Suck',
-    ((A, 'Clean'), (A, 'Clean')): 'Right',
-    ((A, 'Clean'), (A, 'Dirty')): 'Suck',
+    ((A, "Clean"),): "Right",
+    ((A, "Dirty"),): "Suck",
+    ((B, "Clean"),): "Left",
+    ((B, "Dirty"),): "Suck",
+    ((A, "Clean"), (A, "Clean")): "Right",
+    ((A, "Clean"), (A, "Dirty")): "Suck",
     # ...
-    ((A, 'Clean'), (A, 'Clean'), (A, 'Clean')): 'Right',
-    ((A, 'Clean'), (A, 'Clean'), (A, 'Dirty')): 'Suck',
-    ((A, 'Clean'), (A, 'Dirty'), (B, 'Clean')): 'Left',
+    ((A, "Clean"), (A, "Clean"), (A, "Clean")): "Right",
+    ((A, "Clean"), (A, "Clean"), (A, "Dirty")): "Suck",
+    ((A, "Clean"), (A, "Dirty"), (B, "Clean")): "Left",
     # ...
 }
 
@@ -30,12 +30,12 @@ def TABLE_DRIVEN_AGENT(percept):  # Determine action based on table and percepts
 
 
 def run():  # run agent on several sequential percepts
-    print('Action\tPercepts')
-    print(TABLE_DRIVEN_AGENT((A, 'Clean')), '\t', percepts)
-    print(TABLE_DRIVEN_AGENT((A, 'Dirty')), '\t', percepts)
-    print(TABLE_DRIVEN_AGENT((B, 'Clean')), '\t', percepts)
-    print(TABLE_DRIVEN_AGENT((B, 'Dirty')), '\t', percepts)
+    print("Action\tPercepts")
+    print(TABLE_DRIVEN_AGENT((A, "Clean")), "\t", percepts)
+    print(TABLE_DRIVEN_AGENT((A, "Dirty")), "\t", percepts)
+    print(TABLE_DRIVEN_AGENT((B, "Clean")), "\t", percepts)
+    print(TABLE_DRIVEN_AGENT((B, "Dirty")), "\t", percepts)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     run()
